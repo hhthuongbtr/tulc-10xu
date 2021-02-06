@@ -2,52 +2,74 @@ package model
 
 import "encoding/json"
 
-type ApiServerResponse struct {
-	Count	int `json:"count"`
-	ReturnMessage	string `json:"returnMessage"`
-	ReturnCode	int	`json:"returnCode"`
+
+type ObjDetail struct {
+	DeviceLanIp				string	`json:"deviceLanIp"`
+	DeviceWanIp				string	`json:"deviceWanIp"`
+	UniqVpcId				string	`json:"uniqVpcId"`
+	IP						string	`json:"IP"`
+	PeeringConnectionName	string	`json:"PeeringConnectionName"`
+	QosBandwidth			string	`json:"QosBandwidth"`
+	VpcName					string	`json:"VpcName"`
+	VpcId					string	`json:"VpcId"`
+	VpnGatewayName			string	`json:"VpnGatewayName"`
+	InternetMaxBandwidthOut	string	`json:"InternetMaxBandwidthOut"`
+	Vip						string	`json:"vip"`
+	Ar						string	`json:"ar"`
+	Bandwidth				string	`json:"bandwidth"`
+	CircuitNumber			string	`json:"circuitNumber"`
+	DcType					string	`json:"dcType"`
+	ConnLocalIp				string	`json:"connLocalIp"`
+	ConnPeerIp				string	`json:"connPeerIp"`
 }
 
-type CCU struct {
-	Serverid	string	`json:"serverid"`
-	ServerName	string	`json:"server_name"`
-	status		bool	`json:"status"`
-	Ccu	int	`json:"ccu"`
+type Dimension struct {
+	UnInstanceId	string	`json:"unInstanceId"`
+	ObjDetail		string	`json:"objDetail"`
 }
 
-type CcuResponse struct {
-	Unixtime	int64	`json:"unixtime"`
-	Groupid	string	`json:"groupid"`
-	GroupName	string	`json:"group_name"`
-	ServerList	[]CCU	`json:"server_list"`
+type AlarmObjInfo struct {
+	Region			string	`json:"region"`
+	Dimensions		Dimension	`json:"dimensions"`
 }
 
-type ServerListResponse struct {
-	ReturnMessage	string	`json:"returnMessage" yaml:"returnMessage"`
-	ReturnCode	int	`json:"returnCode" yaml:"returnCode"`
-	Data map[string]ServerListElement	`json:"data" yaml:"data"`
+type Conditions struct {
+	ProductName				string	`json:"productName"`
+	ProductShowName			string	`json:"productShowName"`
+	EventName				string	`json:"eventName"`
+	EventShowName			string	`json:"eventShowName"`
+	AlarmNotifyType			string	`json:"alarmNotifyType"`
+	AlarmNotifyPeriod		string	`json:"alarmNotifyPeriod"`
 }
 
-type ServerListElement struct {
-	Status	int	`json:"status" yaml:"status"`
-	Info struct{
-		MergeTargetServerID int `json:"merge_target_server_id" yaml:"merge_target_server_id"`
-		OpenTime	int	`json:"open_time" yaml:"open_time"`
-	}	`json:"info" yaml:"info"`
-	ServerID	string	`json:"serverID" yaml:"serverID"`
-	ServerName	string	`json:"serverName" yaml:"serverName"`
+type AlarmPolicyInfo struct {
+	PolicyId				string	`json:"policyId`
+	PolicyType				string	`json:"policyType"`
+	PolicyName				string	`json:"policyName"`
+	Conditions				Conditions	`json:"conditions"`
+	PolicyTypeCName			string	`json:"policyTypeCName"`
 }
 
-func (svlrsp *ServerListResponse) GetJsonString() (JsonString string, err error) {
-	b, err := json.Marshal(svlrsp)
+type TencentAlarm struct {
+	SessionId				string	`json:"sessionId"`
+	AlarmStatus				string	`json:"alarmStatus"`
+	AlarmType				string	`json:"alarmType"`
+	AlarmObjInfo			AlarmObjInfo	`json:"alarmObjInfo"`
+	AlarmPolicyInfo			AlarmPolicyInfo	`json:"alarmPolicyInfo"`
+	FirstOccurTime			string	`json:"firstOccurTime"`
+	RecoverTime				string	`json:"recoverTime"`
+}
+
+func (ta *TencentAlarm) GetJsonString() (JsonString string, err error) {
+	b, err := json.Marshal(ta)
 	if err != nil {
 		return "", err
 	}
 	return string(b), nil
 }
 
-func (svlrsp *ServerListResponse) LoadFromJsonString(JsonString string) (err error) {
-	err = json.Unmarshal([]byte(JsonString), svlrsp)
+func (ta *TencentAlarm) LoadFromJsonString(JsonString string) (err error) {
+	err = json.Unmarshal([]byte(JsonString), ta)
 	if err != nil {
 		return err
 	}

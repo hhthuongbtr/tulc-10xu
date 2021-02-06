@@ -24,7 +24,7 @@ func main()  {
 	log.Println("http mode, please wait")
 	webContext := WebProxy{
 		Host: "0.0.0.0",
-		Port: 80,
+		Port: 8000,
 	}
 	server := initializeServer()
 	setupRoute(server, &webContext)
