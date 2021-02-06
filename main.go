@@ -45,6 +45,7 @@ func setupRoute(server *gin.Engine, webContext *WebProxy) {
 		users := v1.Group("/Callback")
 		{
 			users.POST("", webContext.CallBack)
+			users.GET("", webContext.Ping)
 		}
 	}
 }
@@ -77,6 +78,14 @@ func (w *WebProxy) CallBack(ctx *gin.Context) {
 	reqBody := string(buf[0:num])
 	log.Println(reqBody)
 	ctx.String(200, reqBody)
+	return
+}
+func (w *WebProxy) Ping(ctx *gin.Context) {
+	buf := make([]byte, 1024)
+	num, _ := ctx.Request.Body.Read(buf)
+	reqBody := string(buf[0:num])
+	log.Println(reqBody)
+	ctx.String(200, "pong")
 	return
 }
 
