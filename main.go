@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/hhthuongbtr/tulc-10xu/telegram"
 	"log"
 	"time"
 )
@@ -77,6 +78,7 @@ func (w *WebProxy) CallBack(ctx *gin.Context) {
 	num, _ := ctx.Request.Body.Read(buf)
 	reqBody := string(buf[0:num])
 	log.Println(reqBody)
+	telegram.SendMsgToTelegram(reqBody)
 	ctx.String(200, reqBody)
 	return
 }
