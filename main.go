@@ -30,6 +30,7 @@ func main()  {
 	setupRoute(server, &webContext)
 	log.Print("begin run http server...")
 	listenAdd := fmt.Sprintf("%s:%d", webContext.Host, webContext.Port)
+	log.Printf("serve on %s\n", listenAdd)
 	err := server.Run(listenAdd)
 	if err != nil {
 		log.Println(err)
