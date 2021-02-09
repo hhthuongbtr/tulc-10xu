@@ -74,10 +74,24 @@ func initializeServer() *gin.Engine {
 }
 
 func (w *WebProxy) CallBack(ctx *gin.Context) {
+	//var subject string
+	//var body string
+	//var alarmMsg string
 	buf := make([]byte, 1024)
 	num, _ := ctx.Request.Body.Read(buf)
 	reqBody := string(buf[0:num])
 	log.Println(reqBody)
+	//var callbackData model.TencentAlarm
+	//ctx.BindJSON(&callbackData)
+	//switch callbackData.AlarmStatus {
+	//case "0":
+	//	switch callbackData.AlarmPolicyInfo.Conditions.EventName {
+	//	case "ping_unreachable":
+	//		subject = fmt.Sprintf("PROBLEM: [%s][HOST][%s]\n", callbackData.AlarmObjInfo.Dimensions.DeviceName, callbackData.AlarmPolicyInfo.Conditions.EventName)
+	//	}
+	//case "1":
+	//}
+
 	telegram.SendMsgToTelegram(reqBody)
 	ctx.String(200, reqBody)
 	return

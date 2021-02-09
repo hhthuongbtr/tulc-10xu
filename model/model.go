@@ -25,7 +25,8 @@ type ObjDetail struct {
 
 type Dimension struct {
 	UnInstanceId	string	`json:"unInstanceId"`
-	ObjDetail		string	`json:"objDetail"`
+	DeviceName		string	`json:"deviceName"`
+	ObjDetail		ObjDetail	`json:"objDetail"`
 }
 
 type AlarmObjInfo struct {
