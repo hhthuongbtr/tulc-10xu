@@ -27,6 +27,7 @@ type Dimension struct {
 	UnInstanceId	string	`json:"unInstanceId"`
 	DeviceName		string	`json:"deviceName"`
 	ObjDetail		ObjDetail	`json:"objDetail"`
+	ObjName			string	`json:"objName"`
 }
 
 type AlarmObjInfo struct {
@@ -41,6 +42,14 @@ type Conditions struct {
 	EventShowName			string	`json:"eventShowName"`
 	AlarmNotifyType			string	`json:"alarmNotifyType"`
 	AlarmNotifyPeriod		string	`json:"alarmNotifyPeriod"`
+	MetricName				string	`json:"metricName"`
+	MetricShowName			string	`json:"metricShowName"`
+	CalcType				string	`json:"calcType"`
+	CalcValue				string	`json:"calcValue"`
+	CurrentValue			string	`json:"currentValue"`
+	Unit					string	`json:"unit"`
+	Period					string	`json:"period"`
+	PeriodNum				string	`json:"periodNum"`
 }
 
 type AlarmPolicyInfo struct {
@@ -59,6 +68,7 @@ type TencentAlarm struct {
 	AlarmPolicyInfo			AlarmPolicyInfo	`json:"alarmPolicyInfo"`
 	FirstOccurTime			string	`json:"firstOccurTime"`
 	RecoverTime				string	`json:"recoverTime"`
+	DurationTime			int	`json:"durationTime"`
 }
 
 func (ta *TencentAlarm) GetJsonString() (JsonString string, err error) {
