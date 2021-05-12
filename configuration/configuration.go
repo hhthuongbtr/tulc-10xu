@@ -9,7 +9,7 @@ import (
 
 
 func (c *Conf) LoadConf() *Conf {
-	fileName := "/opt/tulc/application.yml"
+	fileName := "/opt/AlarmFor10xu/application.yml"
 	if c.ConfigureFile != "" {
 		fileName = c.ConfigureFile
 	}

@@ -2,11 +2,11 @@ package telegram
 
 import (
 	"encoding/json"
+	"github.com/hhthuongbtr/tulc-10xu/configuration"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
-	"strconv"
 )
 
 // Update is the type of request that telegram sends once u send message to the bot
@@ -43,13 +43,9 @@ type CallbackQuery struct {
 	Data string `json:"data"`
 }
 
-const chatid = -529342927
 const telegramAPIBaseURL string = "https://api.telegram.org/bot"
 const telegramAPISendMessage string = "/sendMessage"
-const telegramTokenEnv string = "1671732973:AAGTg67G89QkTf9yY9Edr9tsUcq-53YKSgs"
 
-// TelegramAPI is the api to which we should send the message to
-var TelegramAPI string = telegramAPIBaseURL + telegramTokenEnv + telegramAPISendMessage
 
 
 // ParseTelegramUpdate takes in the request from telegram and parses Update from it
@@ -63,15 +59,18 @@ func ParseTelegramUpdate(r *http.Request) (*Update, error) {
 }
 
 // SendTextToTelegram sends text to the user
-func SendTextToTelegram(chatID int, text string) (string, error) {
-	log.Printf("Sending to chat_id: %d", chatID)
+func SendTextToTelegram(conf *configuration.Conf, text string) (string, error) {
+	log.Printf("Sending to chat_id: %s", conf.Telegram.ChatID)
+	// TelegramAPI is the api to which we should send the message to
+	var TelegramAPI string = conf.Telegram.APIBaseURL + conf.Telegram.TokenEnv + conf.Telegram.APISendMessage
+
 	// 	log.Printf(string(keyboard))
 	log.Printf(text)
 	log.Println(TelegramAPI)
 	response, err := http.PostForm(
 		TelegramAPI,
 		url.Values{
-			"chat_id":      {strconv.Itoa(chatID)},
+			"chat_id":      {conf.Telegram.ChatID},
 			"text":         {text},
 			// 			"parse_mode":   {"HTML"},
 			// 			"reply_markup": {string(keyboard)},
@@ -95,9 +94,14 @@ func SendTextToTelegram(chatID int, text string) (string, error) {
 	return bodyString, nil
 }
 
-func SendMsgToTelegram(msg string) {
-	telegramMsg := msg
-	_, err2 := SendTextToTelegram(chatid, telegramMsg)
+func SendMsgToTelegram(conf *configuration.Conf, msg string) {
+	if conf.Telegram.APIBaseURL == "" {
+		conf.Telegram.APIBaseURL = telegramAPIBaseURL
+	}
+	if conf.Telegram.APISendMessage == "" {
+		conf.Telegram.APISendMessage = telegramAPISendMessage
+	}
+	_, err2 := SendTextToTelegram(conf, msg)
 	if err2 != nil {
 		println(err2)
 		return
