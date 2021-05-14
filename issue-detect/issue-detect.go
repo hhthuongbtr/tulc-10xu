@@ -49,6 +49,74 @@ Trigger severity: Disaster`,
 				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
 				revieveData.AlarmPolicyInfo.Conditions.CurrentValue)
 			return msg
+		case "cpu_load_1":
+			log.Print("CPULoadAvg1m")
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Server Load %s %s%% in 1 mins][Value=%s]
+Trigger status: PROBLEM
+Trigger severity: Disaster`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue)
+			return msg
+		case "cpu_load_5":
+			log.Print("CPULoadAvg5m")
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Server Load %s %s%% in 5 mins][Value=%s]
+Trigger status: PROBLEM
+Trigger severity: Disaster`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue)
+			return msg
+		case "cpu_load_15":
+			log.Print("CPULoadAvg15m")
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Server Load %s %s%% in 15 mins][Value=%s]
+Trigger status: PROBLEM
+Trigger severity: Disaster`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue)
+			return msg
+		case "mem_usage":
+			log.Print("MemoryUtilization")
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Memory used %s %s%%][Value=%s]
+Trigger status: PROBLEM
+Trigger severity: Disaster`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue)
+			return msg
 		default:
 			return alarmMsgRecieve
 		}
@@ -87,6 +155,86 @@ func resolveIssue(alarmMsgRecieve string) (msg string) {
 Time issue: %s
 Server: %s
 Trigger: [%s][%s][Disk used %s %s%% Value=%s%%][Resolved]
+Trigger status: RESOLVED
+Trigger severity: Info
+Time resolved: %s
+Duration time in second: %d`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue,
+				revieveData.RecoverTime,
+				revieveData.DurationTime)
+			return msg
+		case "cpu_load_1":
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Server Load %s %s%% in 1 mins][Value=%s][Resolved]
+Trigger status: RESOLVED
+Trigger severity: Info
+Time resolved: %s
+Duration time in second: %d`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue,
+				revieveData.RecoverTime,
+				revieveData.DurationTime)
+			return msg
+		case "cpu_load_5":
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Server Load %s %s%% in 5 mins][Value=%s][Resolved]
+Trigger status: RESOLVED
+Trigger severity: Info
+Time resolved: %s
+Duration time in second: %d`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue,
+				revieveData.RecoverTime,
+				revieveData.DurationTime)
+			return msg
+		case "cpu_load_15":
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Server Load %s %s%% in 15 mins][Value=%s][Resolved]
+Trigger status: RESOLVED
+Trigger severity: Info
+Time resolved: %s
+Duration time in second: %d`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue,
+				revieveData.RecoverTime,
+				revieveData.DurationTime)
+			return msg
+		case "mem_usage":
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][Memory %s %s%%][Value=%s]
 Trigger status: RESOLVED
 Trigger severity: Info
 Time resolved: %s
