@@ -17,5 +17,5 @@ telegram:
     - Chạy daemon hoặc chạy với Docker 
 ```bash
         chmod +x talarm && nohup talarm -m http
-        docker run -p 80:8000 -itd -e GIN_MODE=release talarm
+        docker run -p 80:8000 -v /opt/AlarmFor10xu/application.yml :/opt/AlarmFor10xu/application.yml -itd -e GIN_MODE=release talarm
 ```
