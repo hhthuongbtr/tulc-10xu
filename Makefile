@@ -1,7 +1,7 @@
 build:
-	GOOS=linux GOARCH=amd64 go build -o deployment/tulc-10xu main.go
-	docker build -t tulc-10xu deployment
+	GOOS=linux GOARCH=amd64 go build -o deployment/talarm main.go
+	docker build -t talarm deployment
 clean:
-	rm -f deployment/tulc-10xu
+	rm -f deployment/talarm
 run:
-	docker run -p 80:8000 -itd -e GIN_MODE=release tulc-10xu
+	docker run -p 80:8000 -itd -e GIN_MODE=release talarm
