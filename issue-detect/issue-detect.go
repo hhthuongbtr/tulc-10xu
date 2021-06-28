@@ -117,6 +117,25 @@ Trigger severity: Disaster`,
 				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
 				revieveData.AlarmPolicyInfo.Conditions.CurrentValue)
 			return msg
+		// CPU Usage rate
+		case "cpu_use_rate":
+			log.Print("cpu_use_rate")
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][CPU Util %s %s%%][Value=%s] in %s seconds
+Trigger status: PROBLEM
+Trigger severity: Disaster`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.UInstanceId,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue
+				revieveData.AlarmPolicyInfo.Conditions.Period)
+			return msg
 		default:
 			return alarmMsgRecieve
 		}
@@ -243,6 +262,27 @@ Duration time in second: %d`,
 				revieveData.FirstOccurTime,
 				revieveData.AlarmObjInfo.Dimensions.ObjName,
 				revieveData.AlarmObjInfo.Dimensions.DeviceName,
+				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
+				revieveData.AlarmPolicyInfo.Conditions.CalcType,
+				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue,
+				revieveData.RecoverTime,
+				revieveData.DurationTime)
+			return msg
+		// CPU use rate
+		case "cpu_use_rate":
+			msg = fmt.Sprintf(`Alarm ID: %s
+Time issue: %s
+Server: %s
+Trigger: [%s][%s][CPU Util %s %s%%][Value=%s]
+Trigger status: RESOLVED
+Trigger severity: Info
+Time resolved: %s
+Duration time in second: %d`,
+				revieveData.SessionId,
+				revieveData.FirstOccurTime,
+				revieveData.AlarmObjInfo.Dimensions.ObjName,
+				revieveData.AlarmObjInfo.Dimensions.UInstanceId,
 				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
 				revieveData.AlarmPolicyInfo.Conditions.CalcType,
 				revieveData.AlarmPolicyInfo.Conditions.CalcValue,

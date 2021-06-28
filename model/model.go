@@ -25,6 +25,7 @@ type ObjDetail struct {
 
 type Dimension struct {
 	UnInstanceId	string	`json:"unInstanceId"`
+	UInstanceId	    string 	`json:"uInstanceId"`
 	DeviceName		string	`json:"deviceName"`
 	ObjDetail		ObjDetail	`json:"objDetail"`
 	ObjName			string	`json:"objName"`
