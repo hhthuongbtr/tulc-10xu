@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/hhthuongbtr/tulc-10xu/configuration"
-	"github.com/hhthuongbtr/tulc-10xu/issue-detect"
+	"github.com/hhthuongbtr/tulc-10xu/server"
 	"log"
 )
 
