@@ -54,7 +54,7 @@ Trigger severity: Disaster`,
 			msg = fmt.Sprintf(`Alarm ID: %s
 Time issue: %s
 Server: %s
-Trigger: [%s][%s][Server Load %s %s%% in 1 mins][Value=%s]
+Trigger: [%s][%s][Server Load %s %s in 1 mins][Value=%s]
 Trigger status: PROBLEM
 Trigger severity: Disaster`,
 				revieveData.SessionId,
@@ -71,7 +71,7 @@ Trigger severity: Disaster`,
 			msg = fmt.Sprintf(`Alarm ID: %s
 Time issue: %s
 Server: %s
-Trigger: [%s][%s][Server Load %s %s%% in 5 mins][Value=%s]
+Trigger: [%s][%s][Server Load %s %s in 5 mins][Value=%s]
 Trigger status: PROBLEM
 Trigger severity: Disaster`,
 				revieveData.SessionId,
@@ -88,7 +88,7 @@ Trigger severity: Disaster`,
 			msg = fmt.Sprintf(`Alarm ID: %s
 Time issue: %s
 Server: %s
-Trigger: [%s][%s][Server Load %s %s%% in 15 mins][Value=%s]
+Trigger: [%s][%s][Server Load %s %s in 15 mins][Value=%s]
 Trigger status: PROBLEM
 Trigger severity: Disaster`,
 				revieveData.SessionId,
