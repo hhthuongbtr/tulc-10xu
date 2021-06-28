@@ -133,7 +133,7 @@ Trigger severity: Disaster`,
 				revieveData.AlarmPolicyInfo.Conditions.MetricShowName,
 				revieveData.AlarmPolicyInfo.Conditions.CalcType,
 				revieveData.AlarmPolicyInfo.Conditions.CalcValue,
-				revieveData.AlarmPolicyInfo.Conditions.CurrentValue
+				revieveData.AlarmPolicyInfo.Conditions.CurrentValue,
 				revieveData.AlarmPolicyInfo.Conditions.Period)
 			return msg
 		default:
