@@ -13,6 +13,7 @@
         + Shutdown, lost connect 
         + Disk utilization
         + CPU load
+        + CPU Util
         + Memory
         + Các cảnh báo còn lại ứng dụng sẽ gửi nội dung cảnh báo gốc đến Telegram thông qua bot chat
 # Sử dụng:
