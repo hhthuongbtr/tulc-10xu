@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/hhthuongbtr/tulc-10xu/configuration"
-	"github.com/hhthuongbtr/tulc-10xu/server"
+	"github.com/hhthuongbtr/tulc-10xu/issue-detect"
 	"log"
 )
 
@@ -22,7 +22,7 @@ func main()  {
 	//Out of memory
 	//msg := `{"sessionId":"9LCvdYx3sawt1H1emvaaMpx0","alarmStatus":"1","alarmType":"metric","alarmObjInfo":{"region":"sg","namespace":"qce/cvm","dimensions":{"deviceName":"gt-omg3sea-gametest-misc-02","objId":"f49fc905-e8bf-4f00-a62e-a4933958e7e7","objName":"172.22.0.4#4112475","unInstanceId":"ins-jis5nk7e"}},"alarmPolicyInfo":{"policyId":"policy-8f5m0jo2","policyType":"cvm_device","policyName":"Default","policyTypeCName":"","policyTypeEname":"Cloud Virtual Machine","conditions":{"metricName":"mem_usage","metricShowName":"MemoryUtilization ","calcType":">","calcValue":"90","currentValue":"90.683","unit":"%","period":"60","periodNum":"5","alarmNotifyType":"singleAlarm","alarmNotifyPeriod":5}},"firstOccurTime":"2021-05-11 20:31:00","durationTime":0,"recoverTime":"0"}`
 	//CPU Util over threshold
-	msg = `{"sessionId":"LBzsq6xMHFfelYg7vRcH9Kkr","alarmStatus":"1","alarmType":"metric","alarmObjInfo":{"region":"sg","namespace":"qce/cdb","dimensions":{"objId":"09a82419-aca7-11eb-a85e-0c42a163eabd","objName":"cdb-59ds6dfv(instance name:gt-omg3sea-game-db-03,IP:172.22.0.47:3306)","uInstanceId":"cdb-59ds6dfv"}},"alarmPolicyInfo":{"policyId":"policy-r9mwiupe","policyType":"cdb_detail","policyName":"Default","policyTypeCName":"","policyTypeEname":"CDB-MySQL-MASTER","conditions":{"metricName":"cpu_use_rate","metricShowName":"cpu_use_rate","calcType":">","calcValue":"80","currentValue":"100","unit":"","period":"300","periodNum":"1","alarmNotifyType":"singleAlarm","alarmNotifyPeriod":1}},"firstOccurTime":"2021-06-27 23:05:00","durationTime":0,"recoverTime":"0"}`
+	msg := `{"sessionId":"LBzsq6xMHFfelYg7vRcH9Kkr","alarmStatus":"1","alarmType":"metric","alarmObjInfo":{"region":"sg","namespace":"qce/cdb","dimensions":{"objId":"09a82419-aca7-11eb-a85e-0c42a163eabd","objName":"cdb-59ds6dfv(instance name:gt-omg3sea-game-db-03,IP:172.22.0.47:3306)","uInstanceId":"cdb-59ds6dfv"}},"alarmPolicyInfo":{"policyId":"policy-r9mwiupe","policyType":"cdb_detail","policyName":"Default","policyTypeCName":"","policyTypeEname":"CDB-MySQL-MASTER","conditions":{"metricName":"cpu_use_rate","metricShowName":"cpu_use_rate","calcType":">","calcValue":"80","currentValue":"100","unit":"","period":"300","periodNum":"1","alarmNotifyType":"singleAlarm","alarmNotifyPeriod":1}},"firstOccurTime":"2021-06-27 23:05:00","durationTime":0,"recoverTime":"0"}`
 	aa := issue_detect.RefactorMessage(msg)
 	log.Print(aa)
 }
